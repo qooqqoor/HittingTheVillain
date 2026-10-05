@@ -6,10 +6,10 @@
 <title>出氣擂台</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Noto+Sans+TC:wght@500;700;900&display=swap">
 <style>
-/* 版面:直式手遊一欄。上方資源列、中間直式舞台、下方武器快捷列與開罵列;角色設定收在底部抽屜。單一深色遊戲風,不分深淺主題。 */
+/* 版面:直式手遊一欄。上方資源列、中間直式舞台、下方武器快捷列與開罵列;角色設定收在底部抽屜。單一奶油色遊戲風,不分深淺主題。 */
 :root{
-  color-scheme:dark;
-  --bg:#241a4a; --bg2:#3b2a7c; --panel:#fff8e6; --panel2:#f1e6c8; --ink:#1b1530; --mute:#6d6488;
+  color-scheme:light;
+  --bg:#f1e3c2; --bg2:#fff7df; --panel:#fffaf0; --panel2:#f3e4c2; --ink:#2b2030; --mute:#7a6a5a;
   --gold:#ffc83a; --gold-d:#e08a00; --hit:#ff3d5a; --hit-d:#b3183a; --cool:#3aa0ff; --ok:#35d07f; --light:#fff8e6;
   --display:"Bangers","Noto Sans TC",sans-serif;
   --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
@@ -18,7 +18,7 @@
 h1,.combo,.pop,.slam,.cutin b,.dizzy,.rank,.ult,.pill b{paint-order:stroke fill}
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--bg) radial-gradient(circle at 50% 0,var(--bg2),var(--bg) 70%) fixed;color:var(--light);font:500 15px/1.5 var(--body)}
+body{background:var(--bg) radial-gradient(circle at 50% 0,var(--bg2),var(--bg) 75%) fixed;color:var(--ink);font:500 15px/1.5 var(--body)}
 .app{max-width:592px;margin:0 auto;padding-inline:16px;padding-block:10px 28px;display:flex;flex-direction:column;gap:10px}
 button,input{font:inherit;color:var(--ink)}
 button{cursor:pointer}
@@ -28,7 +28,7 @@ button{cursor:pointer}
 .btn{background:linear-gradient(#fff,var(--panel2));border:2.5px solid var(--ink);border-radius:12px;padding:6px 12px;font-weight:900;box-shadow:0 4px 0 var(--ink);color:var(--ink);white-space:nowrap}
 .btn:active{transform:translateY(4px);box-shadow:none}
 .btn.gold{background:linear-gradient(#ffe88a,var(--gold))}
-.btn.red{background:linear-gradient(#ff7a8e,var(--hit));color:#fff}
+.btn.red{background:linear-gradient(#ffb3a6,#ff7f73);color:var(--ink)}
 .btn.big{font-size:19px;padding:9px 26px;border-radius:16px}
 
 /* 上方列 */
@@ -78,7 +78,11 @@ h1{margin:0;font:900 26px/1 var(--body);letter-spacing:.04em;color:var(--gold);-
 .foe.f .leg{background:#ffd9b3;width:11%;border-radius:20% 20% 40% 40%}
 .foe.f .leg.l{left:35%}.foe.f .leg.r{right:35%}
 .foe.f .tie{display:none}
-.foe.beg .arm.l{transform:rotate(150deg);top:46%} .foe.beg .arm.r{transform:rotate(-150deg);top:46%}
+.foe .arm,.foe .leg{transform-origin:50% 9%}
+.foe .arm.l{animation:swayL 1.7s ease-in-out infinite alternate}.foe .arm.r{animation:swayR 1.7s ease-in-out infinite alternate}
+@keyframes swayL{to{rotate:7deg}}@keyframes swayR{to{rotate:-7deg}}
+.foe.ko .arm,.foe.frozen .arm{animation:none}
+.foe.beg .arm.l{transform:rotate(158deg)} .foe.beg .arm.r{transform:rotate(-158deg)}
 .wounds{position:absolute;inset:0;z-index:4;pointer-events:none}
 .wounds span{position:absolute;width:24%;aspect-ratio:1}
 .wounds svg{width:100%;height:100%;overflow:visible}
@@ -106,9 +110,9 @@ h1{margin:0;font:900 26px/1 var(--body);letter-spacing:.04em;color:var(--gold);-
 
 /* 我方、怒氣、必殺 */
 .me{position:absolute;left:4%;bottom:8%;width:min(21cqw,18cqh);aspect-ratio:1;border-radius:50%;border:4px solid var(--ink);overflow:hidden;background:#ffd9b3;z-index:4;box-shadow:0 4px 0 var(--ink),0 0 0 3px var(--gold)}
-.tag{position:absolute;z-index:5;pointer-events:none;background:var(--panel);color:var(--ink);border:2.5px solid var(--ink);border-radius:99px;padding:0 9px;font-weight:900;font-size:12.5px;line-height:1.5;white-space:nowrap;max-width:46cqw;overflow:hidden;text-overflow:ellipsis;box-shadow:0 2px 0 var(--ink)}
-.tag.metag{left:calc(4% + min(21cqw,18cqh)/2);bottom:6%;translate:-50% 0;background:var(--gold)}
-.tag.ftag{left:50%;top:102%;translate:-50% 0}
+.ntag{position:absolute;z-index:5;pointer-events:none;background:var(--panel);color:var(--ink);border:2.5px solid var(--ink);border-radius:99px;padding:0 9px;font-weight:900;font-size:12.5px;line-height:1.5;white-space:nowrap;max-width:46cqw;overflow:hidden;text-overflow:ellipsis;box-shadow:0 2px 0 var(--ink)}
+.ntag.metag{left:calc(4% + min(21cqw,18cqh)/2);bottom:6%;translate:-50% 0;background:var(--gold)}
+.ntag.ftag{left:50%;top:102%;translate:-50% 0}
 .foe.ko .ftag{opacity:0}
 .who label.lb{font-size:12.5px;font-weight:900;color:var(--mute);margin-bottom:-5px}
 .rage{position:absolute;left:4%;right:28%;bottom:2.5%;height:14px;border:2.5px solid var(--ink);border-radius:99px;background:#3a3350;overflow:hidden;z-index:4;pointer-events:none}
@@ -164,7 +168,7 @@ h1{margin:0;font:900 26px/1 var(--body);letter-spacing:.04em;color:var(--gold);-
 .tray::-webkit-scrollbar{display:none}
 .tray button{display:flex;flex-direction:column;align-items:center;gap:0;padding:5px 2px 4px;font-size:11.5px;min-width:0;border-radius:14px;line-height:1.3}
 .tray button span{font-size:26px;line-height:1.15}
-.tray button[aria-pressed=true]{background:linear-gradient(#ffe88a,var(--gold));transform:translateY(-3px);box-shadow:0 7px 0 var(--ink),0 0 0 3px var(--light)}
+.tray button[aria-pressed=true]{background:linear-gradient(#ffe88a,var(--gold));transform:translateY(-3px);box-shadow:0 7px 0 var(--ink),0 0 0 3px var(--hit)}
 .cv{position:absolute;inset:0;width:100%;height:100%;z-index:6;pointer-events:none}
 .foe{transition:transform .4s cubic-bezier(.5,1.5,.5,1),scale .35s cubic-bezier(.5,1.7,.5,1)}
 .foe.tiny{scale:.42;translate:-45% 14.5%}
@@ -173,17 +177,17 @@ h1{margin:0;font:900 26px/1 var(--body);letter-spacing:.04em;color:var(--gold);-
 .foe.sick .foeIdle{filter:hue-rotate(75deg) saturate(1.5)}
 .tabs2{display:flex;gap:6px;margin-bottom:-4px}
 .tabs2 .btn{flex:1;font-size:14px;padding:3px 6px;box-shadow:0 3px 0 var(--ink)}
-.tabs2 .btn[aria-pressed=true]{background:linear-gradient(#c9a8ff,#8a5cf0);color:#fff}
-.tray button.magic{background:linear-gradient(#f3eaff,#d9c4ff)}
+.tabs2 .btn[aria-pressed=true]{background:linear-gradient(#ffe88a,var(--gold));color:var(--ink)}
+.tray button.magic{background:linear-gradient(#fff6e6,#f2dcc8)}
 .packs{display:flex;gap:6px;margin-bottom:-4px}
 .packs .btn{flex:1;font-size:13px;padding:3px 6px;box-shadow:0 3px 0 var(--ink)}
-.packs .btn[aria-pressed=true]{background:linear-gradient(#ff7a8e,var(--hit));color:#fff}
+.packs .btn[aria-pressed=true]{background:linear-gradient(#ffe88a,var(--gold));color:var(--ink)}
 .yell{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none}
 .yell::-webkit-scrollbar{display:none}
 .yell .btn{font-size:13px;padding:5px 10px;flex:none}
 .say{display:flex;gap:8px}
 .say input{flex:1;min-width:0;border:2.5px solid var(--ink);border-radius:12px;padding:7px 10px;background:#fff}
-.hint{margin:0;font-size:13px;color:#cfc6ee;text-align:center}
+.hint{margin:0;font-size:13px;color:var(--mute);text-align:center}
 
 /* 設定抽屜 */
 .sheet{position:fixed;inset:0;z-index:50;background:rgba(27,21,48,.6);display:flex;align-items:flex-end;justify-content:center}
@@ -229,6 +233,22 @@ h1.art{min-width:150px;height:36px;background-position:left center!important}
 .has-hp-frame .hp,.has-rage-frame .rage{border-color:transparent;box-shadow:none}
 .has-panel .result,.has-panel .sheetIn{border:24px solid transparent;border-image:var(--art-panel) 60 fill/24px;background:none;box-shadow:none;border-radius:0;padding:4px}
 .has-btn .btn:not(.tile){border:12px solid transparent;border-image:var(--art-btn) 40 fill/12px;background:none;box-shadow:none;border-radius:0;padding:0 4px}
+/* 有身體圖時把零件框放大,讓身體撐得住大頭 */
+.foe .torso.art{left:22%;top:50%;width:56%;height:41%}
+.foe .arm.art{width:18%;height:33%;top:53%}
+.foe .arm.l.art{left:11%;transform:rotate(13deg)}.foe .arm.r.art{right:11%;transform:rotate(-13deg)}
+.foe.f .arm.l.art{left:17%}.foe.f .arm.r.art{right:17%}
+.foe.f .leg.l.art{left:29%}.foe.f .leg.r.art{right:29%}
+.foe.beg .arm.l.art{transform:rotate(158deg)}.foe.beg .arm.r.art{transform:rotate(-158deg)}
+.foe .leg.art{width:23%;height:26%;top:76%}
+.foe .leg.l.art{left:27%}.foe .leg.r.art{right:27%}
+.foe:has(.torso.art) .ftag{top:106%}
+/* 九宮格按鈕圖是米色的:字一律用深色,選中或紅色按鈕改用濾鏡上色 */
+.has-btn .btn:not(.tile){color:var(--ink)}
+.has-btn .btn[aria-pressed=true]:not(.tile),.has-btn .btn.gold:not(.tile){filter:sepia(1) saturate(3.2) hue-rotate(-12deg)}
+.has-btn .btn.red:not(.tile){filter:sepia(1) saturate(3.4) hue-rotate(-38deg)}
+.has-btn .cchip .btn{border-radius:0}
+.tray button.art span img{width:34px;height:34px}
 @media (prefers-reduced-motion:reduce){.foeIdle,.tear,.dizzy,.sweat,.flag,.ult.ready,.result,.sheetIn{animation:none}}
 </style>
 
@@ -263,9 +283,9 @@ h1.art{min-width:150px;height:36px;background-position:left center!important}
       <div class="wounds" id="wounds"></div>
       <div class="x sweat"></div><div class="x tear l"></div><div class="x tear r"></div><div class="x dizzy">★★★</div>
       <div class="x flag">🏳️</div>
-    </div></div><div class="tag ftag" id="foeTag">對方</div></div>
+    </div></div><div class="ntag ftag" id="foeTag">對方</div></div>
     <div class="me av" id="me" data-av="me"></div>
-    <div class="tag metag" id="meTag">我</div>
+    <div class="ntag metag" id="meTag">我</div>
     <div class="rage"><i id="rageBar"></i><span>怒氣</span></div>
     <button class="ult" id="ult" type="button">必殺</button>
     <div class="bubble foeb" id="foeSay"></div>
@@ -361,7 +381,7 @@ function applyArt(id){
   if(STATIC[id])document.querySelectorAll(STATIC[id][0]).forEach(el=>skin(el,id,STATIC[id][1]));
   if(ON[id])document.querySelectorAll(ON[id]).forEach(el=>el.style.setProperty('--art-on',`url("${ART[id]}")`));
   if(ROOT.includes(id)){const k=id.split('/')[1];document.documentElement.classList.add('has-'+k);document.documentElement.style.setProperty('--art-'+k,`url("${ART[id]}")`)}
-  if(id==='ui/bg')document.body.style.background=`#241a4a url("${ART[id]}") center/cover fixed`;
+  if(id==='ui/bg')document.body.style.background=`#f1e3c2 url("${ART[id]}") center top/cover fixed`;
   if(id.startsWith('face/'))renderAv(id.slice(5).replace('-f',''));
   if(id.startsWith('weapon/')){const b=$('w-'+id.slice(7));if(b)b.firstChild.innerHTML=artImg(id)}
 }
@@ -617,6 +637,13 @@ function react(kind,dir){
   const [mid,dur]=REACT[kind](dir), end=kind==='blast'?`rotate(${dir*720}deg)`:'none';
   foeIn.animate(['none',...mid,end].map(t=>({transform:t})),{duration:dur,easing:'ease-out'});
   foe.classList.add('flash');setTimeout(()=>foe.classList.remove('flash'),70);
+  jiggle(dir,kind==='tiny'?.5:kind==='blast'||kind==='spin'||kind==='whirl'?1.6:1);
+}
+/* 被打時手腳各自以肩膀、髖部為軸甩動再彈回來 */
+function jiggle(dir,amp){
+  const sw=(sel,a,delay)=>{const el=foe.querySelector(sel);if(!el)return;const k=a*amp*(.8+Math.random()*.4);
+    el.animate([{rotate:'0deg'},{rotate:k+'deg'},{rotate:-k*.6+'deg'},{rotate:k*.32+'deg'},{rotate:-k*.14+'deg'},{rotate:'0deg'}],{duration:720,delay,easing:'ease-out'})};
+  sw('.arm.l',48*dir+12,0);sw('.arm.r',48*dir-12,40);sw('.leg.l',16*dir,60);sw('.leg.r',16*dir,100);
 }
 
 /* ===== 魔法:canvas 粒子特效 ===== */
